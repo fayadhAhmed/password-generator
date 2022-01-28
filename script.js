@@ -39,12 +39,12 @@ function randomSymbols(){
 function generatPassword() {
     let password = '';
     
-
     for (let index = 0; index < 100; index++) {
        
         password += randomCharacter(capitalCharacters);
         password += randomCharacter(smallCharacters);
         password += randomSymbols();
+        password += Math.round(Math.random() * 10);
         
     } 
     
@@ -58,3 +58,4 @@ button.addEventListener('click',function () {
     passWordLenght = document.getElementById('passwordLenght').value;
     resultBox.innerText = generatPassword();
 })
+
