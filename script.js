@@ -1,49 +1,55 @@
-const capitalCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-const smallCharacters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-const symbols = ['!', '!', '_', '@', '#', '$', '%', '^', '&']
+const characters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z','a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+const symbols= ['!', '!', '_', '@', '#', '$', '%', '^', '&'];
+
 let passWordLenght = 8;
 let button = document.getElementById('button');
 let resultBox = document.getElementById("result");
 
-function randomCharacter(characters){
+//  make and retun random character
+function randomCharacters (){
     let randomNumber = Math.floor(Math.random() * 100);
-    let randomCharacter = '';
-    
-    if (randomNumber < 27) {
+    let randomCharacter =  "";
 
-        randomCharacter = characters[randomNumber];
-        return randomCharacter;
+    if (randomNumber > 51) {
+        randomNumber = Math.floor(randomNumber - 48 );
+        return randomCharacter =  characters[randomNumber];
 
-    }else if( randomNumber > 27 && randomNumber <= 60){
+        
 
-        randomNumber = Math.floor(randomNumber / 3) ;
-        randomCharacter = characters[randomNumber];
-        return randomCharacter;
-
-
-    }else if( randomNumber > 60 && randomNumber <= 99){
-
-        randomNumber = Math.floor(randomNumber / 3 - 20) ;
-        randomCharacter = characters[randomNumber];
-        return randomCharacter;
-
-    }
+    }else{ return randomCharacter =  characters[randomNumber]; }
 }
 
-function randomSymbols(){
+//  make and retun random sumbol
+function randomSymbol(){
+
     let randomNumber = Math.floor(Math.random() * 10);
-    let randomSymbol = symbols[randomNumber]
-    return randomSymbol;
+    let randomSymbol =  "";
+    if (randomNumber === 9) {
+        randomNumber = Math.floor(randomNumber - 1);
+        return randomSymbol =  symbols[randomNumber];
+
+        
+
+    }else{ return randomSymbol =  symbols[randomNumber]; }
 }
 
 function generatPassword() {
     let password = '';
     
-    for (let index = 0; index < 100; index++) {
+    for (let index = 0; index < passWordLenght; index++) {
        
-        password += randomCharacter(capitalCharacters);
-        password += randomCharacter(smallCharacters);
-        password += randomSymbols();
+        let character = randomCharacters();
+        let symbol = randomSymbol();
+
+        if (character !== undefined) {
+            password += character;
+        }
+        if (symbol !== undefined) {
+            password += symbol;
+        }
+        if (character !== undefined) {
+            password += character;
+        }
         password += Math.round(Math.random() * 10);
         
     } 
@@ -53,6 +59,7 @@ function generatPassword() {
     return pass;
     
 }
+
 button.addEventListener('click',function () {
 
     passWordLenght = document.getElementById('passwordLenght').value;
