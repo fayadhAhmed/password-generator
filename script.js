@@ -47,9 +47,6 @@ function generatPassword() {
         if (symbol !== undefined) {
             password += symbol;
         }
-        if (character !== undefined) {
-            password += character;
-        }
         password += Math.round(Math.random() * 10);
         
     } 
